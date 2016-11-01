@@ -1,5 +1,5 @@
 var through2 = require('through2')
-var from = require('new-from')
+var from = require('from2')
 var bl = require('bl')
 
 module.exports = createStream
@@ -22,7 +22,7 @@ function createStream(transform) {
       return next()
     }
 
-    from([contents])
+    from(contents)
       .pipe(output)
       .pipe(bl(function(err, buffer) {
         if (err) return stream.emit('error', err)
